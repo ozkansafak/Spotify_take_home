@@ -1,4 +1,5 @@
 /Users/ozkansafak/Spotify_take_home/data_sample
 /Users/ozkansafak/Spotify_take_home/df_new
 *.csv
+*.pyc
 .DS_Store
