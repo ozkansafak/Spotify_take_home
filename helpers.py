@@ -120,14 +120,14 @@ def bar_plot_session_length(df_new, column_name='country', rotation=0, sort=True
     grouped = df_sessions['session_length'].groupby(df_new[column_name])
     g_sum  = grouped.apply(lambda x: np.sum(x)/60) # convert to [min]
     g_mean = grouped.apply(lambda x: np.mean(x)/60)
-    g_names = list(g_sum.index) # returns alphabetical ordered list of group names
     
     if sort:
         g_sum.sort_values(ascending=False, inplace=True)
         g_mean.sort_values(ascending=False, inplace=True)
     
-    g_names = list(g_sum.index) # returns alphabetical ordered list of group names    
-    
+    # g_names will be used for plt.xticks
+    g_names = g_mean.index if mean_or_sum == 'mean' else g_sum.index
+        
     y = g_mean if mean_or_sum == 'mean' else g_sum
 
     plt.figure().set_size_inches((15, 5))
